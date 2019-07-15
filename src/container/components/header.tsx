@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function ButtonAppBar() {
+const ButtonAppBar = withRouter(({ history }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -49,11 +49,13 @@ export default function ButtonAppBar() {
                     <Typography className={classes.title} variant="h6" ><Link to="/"><img width="52" src={logo} alt="kyiv Capitals logo" />Kyiv Capitals</Link></Typography>
                     <Button color="inherit"><Link to="/players">Roster</Link></Button>
                     <Button color="inherit"><Link to="/shop">Fan shop</Link></Button>
-                    <Button color="secondary" variant="outlined" className={classes.button}>
+                    <Button color="secondary" onClick={() => { history.push('/booking') }} variant="outlined" className={classes.button}>
                         Book a ticket
                     </Button>
                 </Toolbar>
             </AppBar>
         </div>
     );
-}
+})
+
+export default ButtonAppBar
