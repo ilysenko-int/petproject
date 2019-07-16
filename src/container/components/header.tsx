@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import { AppBar, Toolbar, Typography, Button, Container } from '@material-ui/core/';
 import logo from '../../assets/images/logo.jpg'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -20,16 +17,22 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         title: {
             flexGrow: 1,
+            alignItems: 'center',
+            display: 'inline-flex',
             '& a': {
                 color: '#040d2e',
                 textDecoration: 'none',
                 textTransform: 'uppercase',
                 letterSpacing: '3px',
                 fontWeight: 600,
-                marginBottom: -7,
-                display: 'block',
+                display: 'inline-flex',
+                alignItems: 'center',
                 '&:hover': {
                     opacity: 0.8
+                },
+                '& span': {
+                    marginBottom: -5,
+                    marginLeft: 10,
                 }
             }
         },
@@ -45,14 +48,17 @@ const ButtonAppBar = withRouter(({ history }) => {
     return (
         <div className={classes.root}>
             <AppBar className={classes.appBar} position="static">
-                <Toolbar>
-                    <Typography className={classes.title} variant="h6" ><Link to="/"><img width="52" src={logo} alt="kyiv Capitals logo" />Kyiv Capitals</Link></Typography>
-                    <Button color="inherit"><Link to="/players">Roster</Link></Button>
-                    <Button color="inherit"><Link to="/shop">Fan shop</Link></Button>
-                    <Button color="secondary" onClick={() => { history.push('/booking') }} variant="outlined" className={classes.button}>
-                        Book a ticket
-                    </Button>
-                </Toolbar>
+                <Container>
+                    <Toolbar>
+                        <Typography className={classes.title} variant="h6" ><Link to="/"><img width="52" src={logo} alt="kyiv Capitals logo" /> <span>Kyiv Capitals</span> </Link></Typography>
+                        <Button color="inherit"><Link to="/players">Roster</Link></Button>
+                        <Button color="inherit"><Link to="/shop">Fan shop</Link></Button>
+                        <Button color="inherit"><Link to="/news">News</Link></Button>
+                        <Button color="secondary" onClick={() => { history.push('/booking') }} variant="outlined" className={classes.button}>
+                            Book a ticket
+                        </Button>
+                    </Toolbar>
+                </Container>
             </AppBar>
         </div>
     );
