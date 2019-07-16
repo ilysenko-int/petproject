@@ -15,6 +15,7 @@ function reducers(
       return {
         ...state,
         fetching: false,
+        data: action.payload
       };
     case FETCH_NEWS_FAILURE:
       return {
