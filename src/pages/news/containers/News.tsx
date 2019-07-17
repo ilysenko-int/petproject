@@ -6,10 +6,21 @@ import { AppState } from "../../../store/";
 import { NewsState } from "../types/";
 import PlayerCard from '../components/PlayerCard';
 import { fetchNews } from '../actions/fetch'
+import { withStyles, WithStyles, createStyles  } from '@material-ui/styles';
+import { Theme } from '@material-ui/core';
 
-interface ComponentProps {
+const styles = (theme: Theme) => createStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+});
+
+
+interface ComponentProps extends WithStyles<typeof styles> {
   fetchNews: () => void;
-  news: NewsState
+  news: NewsState,
 }
 
 class App extends React.Component<ComponentProps> {
@@ -19,11 +30,11 @@ class App extends React.Component<ComponentProps> {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <Container>
-          <header className="App-header"><Typography variant="h6">Latest news</Typography></header>
-          {this.props.news.data.map(item => <PlayerCard item={item} />)}
+        <Container className={classes.container} >
+          {this.props.news.data.map(item => <PlayerCard key={item.id} item={item} />)}
         </Container>
       </div>
     );
@@ -38,7 +49,7 @@ const mapDispatchToProps = {
   fetchNews,
 };
 
-export default connect(
+export default withStyles(styles)(connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(App));

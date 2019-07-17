@@ -20,16 +20,19 @@ export function failureData(): FailureData {
     }
 }
 
-export function fetchNews() {
+export function fetchArticleById(data: any) {
     return (dispatch: { (arg0: RequestData): void; (arg0: ReceiveData): void; (arg0: FailureData): void; }) => {
         dispatch(requestData());
-        fireStore.collection('articles').get().then(function (querySnapshot) {
-            let arr: any = [];
-            querySnapshot.forEach(function (doc) {
-                console.log(doc.data())
-                arr.push(doc.data())
-            });
-            return dispatch(receiveData(arr))
-        }).catch(error => dispatch(failureData()))
+
+        fireStore
+            .collection('articles')
+            .where('title', '==', data.id)
+            .limit(1)
+            .get().then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    console.log(doc.data())
+                });
+                // return dispatch(receiveData(arr))
+            }).catch(error => dispatch(failureData()))
     }
 }

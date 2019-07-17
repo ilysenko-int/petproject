@@ -12,8 +12,15 @@ const useStyles = makeStyles((theme: Theme) =>
         appBar: {
             background: theme.palette.common.white,
         },
-        menuButton: {
+        menulink: {
             marginRight: theme.spacing(2),
+            color: theme.palette.primary.main,
+            textDecoration: 'none',
+            fontSize: 16,
+            fontWeight: 600,
+            '&:hover': {
+                color: theme.palette.primary.light,
+            }
         },
         title: {
             flexGrow: 1,
@@ -37,8 +44,9 @@ const useStyles = makeStyles((theme: Theme) =>
             }
         },
         button: {
+            fontWeight: 600,
             margin: theme.spacing(1),
-            color: theme.palette.secondary.dark
+            color: theme.palette.primary.main,
         }
     }),
 );
@@ -47,14 +55,14 @@ const ButtonAppBar = withRouter(({ history }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <AppBar className={classes.appBar} position="static">
+            <AppBar className={classes.appBar} position="fixed">
                 <Container>
                     <Toolbar>
                         <Typography className={classes.title} variant="h6" ><Link to="/"><img width="52" src={logo} alt="kyiv Capitals logo" /> <span>Kyiv Capitals</span> </Link></Typography>
-                        <Button color="inherit"><Link to="/players">Roster</Link></Button>
-                        <Button color="inherit"><Link to="/shop">Fan shop</Link></Button>
-                        <Button color="inherit"><Link to="/news">News</Link></Button>
-                        <Button color="secondary" onClick={() => { history.push('/booking') }} variant="outlined" className={classes.button}>
+                        <Link className={classes.menulink} to="/players">Roster</Link>
+                        <Link className={classes.menulink} to="/shop">Fan shop</Link>
+                        <Link className={classes.menulink} to="/news">News</Link>
+                        <Button className={classes.button} color="primary" onClick={() => { history.push('/booking') }} variant="outlined" >
                             Book a ticket
                         </Button>
                     </Toolbar>

@@ -3,12 +3,19 @@ export interface News {
     id: string;
     title: string;
     description: string;
+    created_at: {
+        seconds: string,
+        nanoseconds: string
+    },
+    pre_description: string;
+    cover: string,
     images: string[]
 }
 
 export interface NewsState {
     fetching: boolean;
     data: News[];
+    article: News
 }
 
 export const FETCH_NEWS = 'FETCH_NEWS';

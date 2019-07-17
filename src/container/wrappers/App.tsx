@@ -4,6 +4,8 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from '../theme';
 
 import AppBar from '../components/header'
+import Footer from '../components/footer'
+import { Container } from '@material-ui/core';
 
 interface AppProps {
   routes: React.FC,
@@ -15,7 +17,10 @@ const App: React.FC<AppProps> = (props) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar />
-      <Routes />
+      <Container  style={{paddingTop: 80}}>
+         <Routes />
+      </Container>
+      <Footer />
     </ThemeProvider>
   );
 }
