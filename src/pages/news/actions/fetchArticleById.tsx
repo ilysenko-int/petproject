@@ -1,4 +1,4 @@
-import { FETCH_NEWS, FETCH_NEWS_SUCCESS, FETCH_NEWS_FAILURE, News, ReceiveData, RequestData, FailureData } from '../types';
+import { FETCH_NEWS, FETCH_ARTICLE_SUCCESS, FETCH_NEWS_FAILURE, News, ReceiveArticleById, RequestData, FailureData } from '../types';
 import fireStore from '../../../config/firebase';
 
 export function requestData(): RequestData {
@@ -7,9 +7,9 @@ export function requestData(): RequestData {
     }
 };
 
-export function receiveData(payload: News[]): ReceiveData {
+export function receiveArticleById(payload: News[]): ReceiveArticleById {
     return {
-        type: FETCH_NEWS_SUCCESS,
+        type: FETCH_ARTICLE_SUCCESS,
         payload,
     }
 };
@@ -21,18 +21,19 @@ export function failureData(): FailureData {
 }
 
 export function fetchArticleById(data: any) {
-    return (dispatch: { (arg0: RequestData): void; (arg0: ReceiveData): void; (arg0: FailureData): void; }) => {
+    return (dispatch: { (arg0: RequestData): void; (arg0: ReceiveArticleById): void; (arg0: FailureData): void; }) => {
         dispatch(requestData());
-
         fireStore
             .collection('articles')
             .where('title', '==', data.id)
             .limit(1)
             .get().then(function (querySnapshot) {
+                let article: any = {}
                 querySnapshot.forEach(function (doc) {
-                    console.log(doc.data())
+                    article = doc.data();
                 });
-                // return dispatch(receiveData(arr))
+                if(article.title == undefined) { dispatch(failureData()) } else { return dispatch(receiveArticleById(article)) }
+                
             }).catch(error => dispatch(failureData()))
     }
 }

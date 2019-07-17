@@ -17,7 +17,8 @@ const initial: NewsState = {
     pre_description: '',
     cover: '',
     images: []
-  }
+  },
+  not_existed_article: false,
 }
 
 export default initial

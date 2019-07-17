@@ -15,12 +15,15 @@ export interface News {
 export interface NewsState {
     fetching: boolean;
     data: News[];
-    article: News
+    article: News | any,
+    not_existed_article: boolean,
 }
 
 export const FETCH_NEWS = 'FETCH_NEWS';
 export const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS';
 export const FETCH_NEWS_FAILURE = 'FETCH_NEWS_FAILURE';
+
+export const FETCH_ARTICLE_SUCCESS = 'FETCH_ARTICLE_SUCCESS';
 
 
 export interface RequestData {
@@ -35,5 +38,9 @@ export interface FailureData {
     type: typeof FETCH_NEWS_FAILURE,
     payload?: {},
 };
+export interface ReceiveArticleById {
+    type: typeof FETCH_ARTICLE_SUCCESS;
+    payload: News[],
+};
 
-export type ActionTypes = RequestData | ReceiveData | FailureData;
+export type ActionTypes = RequestData | ReceiveData | FailureData | ReceiveArticleById;

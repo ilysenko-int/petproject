@@ -23,7 +23,7 @@ export function failureData(): FailureData {
 export function fetchNews() {
     return (dispatch: { (arg0: RequestData): void; (arg0: ReceiveData): void; (arg0: FailureData): void; }) => {
         dispatch(requestData());
-        fireStore.collection('articles').get().then(function (querySnapshot) {
+        fireStore.collection('articles').limit(10).get().then(function (querySnapshot) {
             let arr: any = [];
             querySnapshot.forEach(function (doc) {
                 console.log(doc.data())
