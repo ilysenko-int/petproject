@@ -23,7 +23,7 @@ class App extends React.Component<ComponentProps> {
       <div>
         <Container>
           <header className="App-header"><Typography variant="h6">Latest news</Typography></header>
-          {this.props.news.data.map(item => <PlayerCard />)}
+          {this.props.news.data.map(item => <PlayerCard item={item} />)}
         </Container>
       </div>
     );

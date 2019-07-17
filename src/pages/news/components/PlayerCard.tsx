@@ -15,6 +15,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { News } from "../types/";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -41,7 +42,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function PlayerCard() {
+interface ComponentProps {
+    item: News
+}
+
+export default function PlayerCard(props: ComponentProps) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -62,18 +67,17 @@ export default function PlayerCard() {
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
+                title={props.item.title}
                 subheader="September 14, 2016"
             />
             <CardMedia
                 className={classes.media}
-                image="/static/images/cards/paella.jpg"
+                image={props.item.images[0]}
                 title="Paella dish"
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                    {props.item.description}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
