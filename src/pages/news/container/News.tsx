@@ -2,14 +2,20 @@ import React from 'react';
 import { connect } from "react-redux";
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { AppState } from "../../../store/index";
-
+import { AppState } from "../../../store/";
+import { NewsState } from "../types/";
+import PlayerCard from '../components/PlayerCard';
 import { fetchNews } from '../actions/fetch'
 
-class App extends React.Component {
+interface ComponentProps {
+  fetchNews: () => void;
+  news: NewsState
+}
+
+class App extends React.Component<ComponentProps> {
 
   componentDidMount() {
- 
+    this.props.fetchNews()
   }
 
   render() {
@@ -17,6 +23,7 @@ class App extends React.Component {
       <div>
         <Container>
           <header className="App-header"><Typography variant="h6">Latest news</Typography></header>
+          {this.props.news.data.map(item => <PlayerCard item={item} />)}
         </Container>
       </div>
     );

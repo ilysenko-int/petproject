@@ -1,16 +1,18 @@
 import * as firebase from "firebase";
 import 'firebase/firestore';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyD2GGWQpRAtHm09G1sUrqGwz3JK52U3YHE",
-    authDomain: "kyiv-capitals.firebaseapp.com",
-    databaseURL: "https://kyiv-capitals.firebaseio.com",
-    projectId: "kyiv-capitals",
-    storageBucket: "",
-    messagingSenderId: "241769066481",
-    appId: "1:241769066481:web:4a0b921a1a0053f3"
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBLbh-MDEa84SCpESYmR2N3jGsYJsT9lSw",
+    authDomain: "highli.firebaseapp.com",
+    databaseURL: "https://highli.firebaseio.com",
+    projectId: "highli",
+    storageBucket: "highli.appspot.com",
+    messagingSenderId: "534949419287",
+    appId: "1:534949419287:web:359c1878c53a6157"
 };
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const fireStore = firebase.firestore()
+const fireStore = firebase.firestore();
 
 export default fireStore

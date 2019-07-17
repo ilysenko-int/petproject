@@ -22,12 +22,12 @@ export function failureData(): FailureData {
 
 export function fetchNews() {
     return (dispatch: { (arg0: RequestData): void; (arg0: ReceiveData): void; (arg0: FailureData): void; }) => {
-        dispatch(requestData())
+        dispatch(requestData());
         fireStore.collection('articles').get().then(function (querySnapshot) {
-            let arr: any = []
+            let arr: any = [];
             querySnapshot.forEach(function (doc) {
                 arr.push(doc.data())
-            })
+            });
             return dispatch(receiveData(arr))
         }).catch(error => dispatch(failureData()))
     }
