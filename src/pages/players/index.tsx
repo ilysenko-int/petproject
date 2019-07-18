@@ -1,11 +1,11 @@
-import reducers from './reducers'
-import initial from './initial'
-import consts from './consts'
+import reducers from './reducers';
+import initial from './initial';
+import consts from './consts';
 
-const wrapper = {
+const players = {
   reducers,
   initial,
-  consts,
-}
+  consts
+};
 
-export default wrapper
+export default players
