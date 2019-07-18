@@ -19,7 +19,8 @@ const styles = (theme: Theme) => createStyles({
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
+        transition: 'none',
     },
     root: {
         flexGrow: 1,
@@ -57,7 +58,7 @@ class NewsDetails extends React.Component<ComponentProps & RouteComponentProps> 
                             <Typography variant="h5">{article.title}</Typography>
                             <img src={article.cover} alt={article.title} />
                             <Typography variant="body1">{article.description}</Typography>
-                            {article.images.map(item => <img key={item} src={item} alt={item} />)}
+                            {article.images.length > 0 && article.images.map(item => <img key={item} src={item} alt={item} />)}
                         </Paper>
                     </Grid>
                 </Grid>

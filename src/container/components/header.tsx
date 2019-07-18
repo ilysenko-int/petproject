@@ -60,11 +60,11 @@ const ButtonAppBar = withRouter(({ history }) => {
                     <Toolbar>
                         <Typography className={classes.title} variant="h6" ><Link to="/"><img width="52" src={logo} alt="kyiv Capitals logo" /> <span>Kyiv Capitals</span> </Link></Typography>
                         <Link className={classes.menulink} to="/players">Roster</Link>
-                        <Link className={classes.menulink} to="/shop">Fan shop</Link>
+                        {/* <Link className={classes.menulink} to="/shop">Fan shop</Link> */}
                         <Link className={classes.menulink} to="/news">News</Link>
-                        <Button className={classes.button} color="primary" onClick={() => { history.push('/booking') }} variant="outlined" >
+                        {/* <Button className={classes.button} color="primary" onClick={() => { history.push('/booking') }} variant="outlined" >
                             Book a ticket
-                        </Button>
+                        </Button> */}
                     </Toolbar>
                 </Container>
             </AppBar>

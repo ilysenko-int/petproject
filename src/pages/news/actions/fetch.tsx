@@ -26,7 +26,6 @@ export function fetchNews() {
         fireStore.collection('articles').limit(10).get().then(function (querySnapshot) {
             let arr: any = [];
             querySnapshot.forEach(function (doc) {
-                console.warn(doc.data())
                 arr.push(doc.data())
             });
             return dispatch(receiveData(arr))

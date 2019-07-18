@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         card: {
             width: '100%',
-            maxWidth: 220,
+            maxWidth: 320,
             marginBottom: 25,
         },
         media: {
@@ -42,13 +42,9 @@ export default function PlayerCard(props: ComponentProps) {
     positions += defense ? positions !== '' ? ',' + defense.join(',') : defense.join(',') : ''
     positions += special ? positions !== '' ? ',' + special.join(',') : special.join(',') : ''
     return (
-        <Grid item={true}>
+        <Grid item={true} xl={12} >
             <Card className={classes.card}>
-                <CardMedia
-                    className={classes.media}
-                    image={player.bio.photo}
-                    title={player.firstName + ' ' + player.lastName}
-                />
+                <CardMedia className={classes.media} image={player.bio.photo} title={player.firstName + ' ' + player.lastName} />
                 <CardHeader title={player.firstName + ' ' + player.lastName + ' #' + player.jersey_number} subheader={positions} />
                 <CardActions>
                     <Link to={`/players/${player.id}`} >Read more</Link>

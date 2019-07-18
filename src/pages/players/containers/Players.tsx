@@ -34,12 +34,7 @@ class Players extends React.Component<ComponentProps> {
     return (
       <div>
         <Container className={classes.container} >
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="flex-start"
-          >
+          <Grid container={true} direction="row" justify="flex-start" alignItems="flex-start">
             {this.props.players.data.map(item => <PlayerCard key={item.id} item={item} />)}
           </Grid>
         </Container>

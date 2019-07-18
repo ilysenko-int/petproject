@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { RouteComponentProps } from 'react-router-dom';
-import { Container, Paper, Grid, Typography, CircularProgress } from '@material-ui/core/';
+import { Container, Paper, Grid, Typography, Box } from '@material-ui/core/';
 import { AppState } from "../../../store";
 import { Player } from "../types";
 import { fetchPlayerById } from '../actions/fetchPlayerById'
 import { withStyles, WithStyles, createStyles } from '@material-ui/styles';
 import { Theme } from '@material-ui/core';
-
 
 const styles = (theme: Theme) => createStyles({
     container: {
@@ -25,6 +24,12 @@ const styles = (theme: Theme) => createStyles({
         flexGrow: 1,
     },
     paper: {
+        overflow: 'hidden'
+    },
+    image: {
+        maxWidth: '400px',
+    },
+    box: {
         padding: theme.spacing(2),
     },
     control: {
@@ -35,7 +40,7 @@ const styles = (theme: Theme) => createStyles({
 
 interface ComponentProps extends WithStyles<typeof styles> {
     fetchPlayerById: (id: any) => void;
-    article: Player,
+    player: Player,
     fetching: boolean,
     not_existed_article: boolean,
 }
@@ -47,14 +52,49 @@ class PlayersDetails extends React.Component<ComponentProps & RouteComponentProp
     }
 
     render() {
-        const { classes, article } = this.props;
+        const { classes, player } = this.props;
+
+        const defense = player.positions.defense
+        const offense = player.positions.offense
+        const special = player.positions.special
+
+        let positions = offense ? offense.join(', ') : ''
+        positions += defense ? positions !== '' ? ',' + defense.join(', ') : defense.join(', ') : ''
+        positions += special ? positions !== '' ? ',' + special.join(', ') : special.join(', ') : ''
+
+
         return (
             <Container className={classes.container} >
-                Details
+                <Paper className={classes.paper}>
+                    <img className={classes.image} src={player.bio.photo} alt="" />
+                    <Box className={classes.box}>
+                        <Typography variant="h4">{player.firstName} {player.lastName} #{player.jersey_number}</Typography>
+                        <Typography variant="body1">Positions on the field: <b>{positions}</b></Typography>
+                        <Typography variant="body1"><p>{player.bio.about}</p></Typography>
+                        <p>Years of experience: {player.bio.experience}</p>
+                        {player.anthropometry ? <p>Height: {player.anthropometry.height} cm</p> : null}
+                        {player.anthropometry ? <p>Weight: {player.anthropometry.weight} kg</p> : null}
+                    </Box>
+                </Paper>
             </Container>
         );
     }
 }
+
+// {
+//     player: {
+//       positions: {
+//           offense: [],
+//           defense: [],
+//           special: [],
+//       },
+//       socialmedia: {
+//           instagram: '',
+//           facebook: '',
+//       }
+//     },
+//     not_existed_player: false,
+//   }
 
 const mapStateToProps = (state: AppState) => ({
     player: state.players.player,

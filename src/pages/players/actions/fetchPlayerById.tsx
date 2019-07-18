@@ -25,15 +25,15 @@ export function fetchPlayerById(data: any) {
         dispatch(requestData());
         fireStore
             .collection('players')
-            .where('firstName', '==', data.id)
+            .where('id', '==', +data.id)
             .limit(1)
             .get().then(function (querySnapshot) {
                 let player: any = {}
                 querySnapshot.forEach(function (doc) {
                     player = doc.data();
                 });
-                if (player.firtName == undefined) { dispatch(failureData()) } else { return dispatch(receivePlayerById(player)) }
-
+                console.log(player)
+                if (player.firstName == undefined) { dispatch(failureData()) } else { return dispatch(receivePlayerById(player)) }
             }).catch(error => dispatch(failureData()))
     }
 }
