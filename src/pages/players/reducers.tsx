@@ -1,26 +1,35 @@
-import consts from './consts'
+import { FETCH_PLAYER_SUCCESS, FETCH_PLAYERS, FETCH_PLAYERS_FAILURE, ActionTypes, FETCH_PLAYERS_SUCCESS } from './types'
 import initial from './initial'
 
-export const actionHandlers = {
-  [consts.FETCH_REQUEST]: (state: object) => ({
-    ...state,
-    fetching: true,
-  }),
-  [consts.FETCH_SUCCESS]: (state: object, action: any) => {
-    return {
-      ...state,
-      fetching: false,
-    }
-  },
-  [consts.FETCH_FAILURE]: (state: object) => ({
-    ...state,
-    fetching: true,
-  })
-}
-
-export const reducers = (state: object = initial, action: any) => {
-  const handler = actionHandlers[action.type]
-  return handler ? handler(state, action) : state
+function reducers(
+  state = initial,
+  action: ActionTypes
+): PlayersState {
+  switch (action.type) {
+    case FETCH_PLAYERS:
+      return {
+        ...state,
+      };
+    case FETCH_PLAYERS_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        data: action.payload
+      };
+    case FETCH_PLAYER_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        article: action.payload
+      };
+    case FETCH_PLAYERS_FAILURE:
+      return {
+        ...state,
+        fetching: false,
+      };
+    default:
+      return state;
+  }
 }
 
 export default reducers
