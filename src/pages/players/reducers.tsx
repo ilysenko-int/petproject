@@ -1,4 +1,4 @@
-import { FETCH_PLAYER_SUCCESS, FETCH_PLAYERS, FETCH_PLAYERS_FAILURE, ActionTypes, FETCH_PLAYERS_SUCCESS } from './types'
+import { FETCH_PLAYER_SUCCESS, FETCH_PLAYERS, FETCH_PLAYERS_FAILURE, ActionTypes, FETCH_PLAYERS_SUCCESS, PlayersState } from './types'
 import initial from './initial'
 
 function reducers(
@@ -20,7 +20,7 @@ function reducers(
       return {
         ...state,
         fetching: false,
-        article: action.payload
+        player: action.payload
       };
     case FETCH_PLAYERS_FAILURE:
       return {

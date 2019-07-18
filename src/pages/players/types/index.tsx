@@ -12,6 +12,7 @@ export interface Player {
     },
     firstName: string,
     lastName: string,
+    jersey_number: number,
     positions: {
         offense?: [],
         defense?: [],

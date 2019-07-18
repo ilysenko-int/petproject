@@ -23,6 +23,7 @@ const initialState = {
 const rootReducer = combineReducers({
     ...initialState,
     news: news.reducers,
+    players: players.reducers,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import { News } from "../types/";
+import { News } from "../types";
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,7 +29,7 @@ interface ComponentProps {
     item: News
 }
 
-export default function PlayerCard(props: ComponentProps) {
+export default function NewsCard(props: ComponentProps) {
     const classes = useStyles();
 
     var formattedTime = new Date(+props.item.created_at.seconds * 1000).toDateString();

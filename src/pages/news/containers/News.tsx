@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { AppState } from "../../../store/";
 import { NewsState } from "../types/";
-import PlayerCard from '../components/PlayerCard';
+import NewsCard from '../components/NewsCard';
 import { fetchNews } from '../actions/fetch'
 import { withStyles, WithStyles, createStyles  } from '@material-ui/styles';
 import { Theme } from '@material-ui/core';
@@ -34,7 +33,7 @@ class App extends React.Component<ComponentProps> {
     return (
       <div>
         <Container className={classes.container} >
-          {this.props.news.data.map(item => <PlayerCard key={item.id} item={item} />)}
+          {this.props.news.data.map(item => <NewsCard key={item.id} item={item} />)}
         </Container>
       </div>
     );

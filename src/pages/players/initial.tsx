@@ -1,22 +1,32 @@
 import {
   PlayersState,
-  Player
 } from "./types";
 
 const initial: PlayersState = {
   fetching: false,
   data: [],
-  article: {
+  player: {
     id: '',
-    title: '',
-    description: '',
-    created_at: {
-        seconds: '',
-        nanoseconds: '',
+    anthropometry: {
+        height: 0,
+        weight: 0,
     },
-    pre_description: '',
-    cover: '',
-    images: []
+    bio: {
+        about: '',
+        experience: '',
+        photo: '',
+    },
+    firstName: '',
+    lastName: '',
+    positions: {
+        offense: [],
+        defense: [],
+        special: [],
+    },
+    socialmedia: {
+        instagram: '',
+        facebook: '',
+    }
   },
   not_existed_player: false,
 };

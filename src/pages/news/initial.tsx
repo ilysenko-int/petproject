@@ -1,6 +1,5 @@
 import {
   NewsState,
-  News
 } from "./types";
 
 const initial: NewsState = {

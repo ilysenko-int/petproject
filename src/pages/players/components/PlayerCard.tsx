@@ -8,14 +8,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import { News } from "../types/";
+import { Player } from "../types/";
 import { Link } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         card: {
             width: '100%',
-            maxWidth: 600,
+            maxWidth: 220,
             marginBottom: 25,
         },
         media: {
@@ -26,30 +27,33 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ComponentProps {
-    item: News
+    item: Player
 }
 
 export default function PlayerCard(props: ComponentProps) {
     const classes = useStyles();
+    const player = props.item
 
-    var formattedTime = new Date(+props.item.created_at.seconds * 1000).toDateString();
+    const defense = player.positions.defense
+    const offense = player.positions.offense
+    const special = player.positions.special
 
+    let positions = offense ? offense.join(',') : ''
+    positions += defense ? positions !== '' ? ',' + defense.join(',') : defense.join(',') : ''
+    positions += special ? positions !== '' ? ',' + special.join(',') : special.join(',') : ''
     return (
-        <Card className={classes.card}>
-            <CardHeader title={props.item.title} subheader={formattedTime} />
-            <CardMedia
-                className={classes.media}
-                image={props.item.cover}
-                title="Paella dish"
-            />
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {props.item.pre_description}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Link to={`/news/${props.item.title}`} >Read more</Link>
-            </CardActions>
-        </Card>
+        <Grid item={true}>
+            <Card className={classes.card}>
+                <CardMedia
+                    className={classes.media}
+                    image={player.bio.photo}
+                    title={player.firstName + ' ' + player.lastName}
+                />
+                <CardHeader title={player.firstName + ' ' + player.lastName + ' #' + player.jersey_number} subheader={positions} />
+                <CardActions>
+                    <Link to={`/players/${player.id}`} >Read more</Link>
+                </CardActions>
+            </Card>
+        </Grid>
     );
 }

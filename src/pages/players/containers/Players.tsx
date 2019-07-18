@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
-import Container from '@material-ui/core/Container';
-import { AppState } from "../../../store/";
-import { PlayersState } from "../types/";
+import { Container, Grid } from '@material-ui/core/';
+import { AppState } from "../../../store";
+import { PlayersState } from "../types";
 import PlayerCard from '../components/PlayerCard';
 import { fetchNews } from '../actions/fetch'
-import { withStyles, WithStyles, createStyles  } from '@material-ui/styles';
+import { withStyles, WithStyles, createStyles } from '@material-ui/styles';
 import { Theme } from '@material-ui/core';
 
 const styles = (theme: Theme) => createStyles({
@@ -22,18 +22,26 @@ interface ComponentProps extends WithStyles<typeof styles> {
   players: PlayersState,
 }
 
-class App extends React.Component<ComponentProps> {
+class Players extends React.Component<ComponentProps> {
 
   componentDidMount() {
     this.props.fetchNews()
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, players } = this.props;
+
     return (
       <div>
         <Container className={classes.container} >
-          {this.props.players.data.map(item => <PlayerCard key={item.id} item={item} />)}
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+          >
+            {this.props.players.data.map(item => <PlayerCard key={item.id} item={item} />)}
+          </Grid>
         </Container>
       </div>
     );
@@ -41,7 +49,7 @@ class App extends React.Component<ComponentProps> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  news: state.news
+  players: state.players
 });
 
 const mapDispatchToProps = {
@@ -51,4 +59,4 @@ const mapDispatchToProps = {
 export default withStyles(styles)(connect(
   mapStateToProps,
   mapDispatchToProps
-)(App));
+)(Players));
