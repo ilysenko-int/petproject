@@ -103,7 +103,7 @@ class AddPlayer extends React.Component<ComponentProps, StateComponent> {
             case 'anthropometry':
             case 'socialmedia':
             case 'bio':
-                this.setState({ ...this.state, form: { ...this.state.form, [name]: { [event.target.id]: event.target.value } } });
+                this.setState({ ...this.state, form: { ...this.state.form, [name]: { ...this.state.form[name],  [event.target.id]: event.target.value } } });
                 break;
             default:
                 this.setState({ ...this.state, form: { ...this.state.form, [name]: event.target.value } });

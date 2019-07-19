@@ -24,13 +24,9 @@ export function create(obj: any) {
     return (dispatch: { (arg0: Send): void; (arg0: Response): void; (arg0: Failure): void; }) => {
         console.warn(obj)
         dispatch(send());
-        fireStore.collection('articles').limit(10).get().then(function (querySnapshot) {
-            let arr: any = [];
-            querySnapshot.forEach(function (doc) {
-                arr.push(doc.data())
-            });
-            return dispatch(response(arr))
-        }).catch(error => dispatch(failure()))
+        fireStore.collection("players").doc("one").set(obj).then(function() {
+            dispatch(response(obj))
+        }).catch(error => dispatch(failure()));
     }
 }
 
