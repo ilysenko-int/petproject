@@ -5,6 +5,7 @@ import players from '../pages/players/index';
 import shop from '../pages/shop/index';
 import booking from '../pages/booking/index';
 import news from '../pages/news/index';
+import admin from '../pages/admin-panel/index';
 
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import ReduxThunk from 'redux-thunk';
@@ -18,12 +19,14 @@ const initialState = {
     [shop.consts.KEY]: (state: object = shop.initial) => state,
     [booking.consts.KEY]: (state: object = booking.initial) => state,
     [news.consts.KEY]: (state: object = news.initial) => state,
+    [admin.consts.KEY]: (state: object = admin.initial) => state,
 };
 
 const rootReducer = combineReducers({
     ...initialState,
     news: news.reducers,
     players: players.reducers,
+    admin: admin.reducers,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

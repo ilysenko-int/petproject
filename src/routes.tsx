@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Home from './pages/home/container/Home'
+import AdminPage from './pages/admin-panel/containers/AdminPage'
 import Booking from './pages/booking/container/Booking'
 import Shop from './pages/shop/container/Shop'
 import Players from './pages/players/containers/Players'
@@ -12,6 +13,7 @@ const Routes: React.FC = () => {
     return (
         <Switch>
             <Route exact={true} path="/" component={Home} />
+            <Route exact={true} path="/admin" component={AdminPage} />
             <Route exact={true} path="/booking" component={Booking} />
             <Route exact={true} path="/players" component={Players} />
             <Route exact={true} path="/shop" component={Shop} />

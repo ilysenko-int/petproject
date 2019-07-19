@@ -17,7 +17,7 @@ const App: React.FC<AppProps> = (props) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar />
-      <Container  style={{paddingTop: 80}}>
+      <Container  style={{ padding: 0, paddingTop: 80}}>
          <Routes />
       </Container>
       <Footer />
