@@ -23,6 +23,6 @@ const App: React.FC<AppProps> = (props) => {
       <Footer />
     </ThemeProvider>
   );
-}
+};
 
 export default App;
