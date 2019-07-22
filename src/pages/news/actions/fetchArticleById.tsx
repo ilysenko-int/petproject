@@ -7,7 +7,7 @@ export function requestData(): RequestData {
     }
 };
 
-export function receiveArticleById(payload: News[]): ReceiveArticleById {
+export function receiveArticleById(payload: News[] | any): ReceiveArticleById {
     return {
         type: FETCH_ARTICLE_SUCCESS,
         payload,
@@ -24,16 +24,14 @@ export function fetchArticleById(data: any) {
     return (dispatch: { (arg0: RequestData): void; (arg0: ReceiveArticleById): void; (arg0: FailureData): void; }) => {
         dispatch(requestData());
         fireStore
-            .collection('articles')
-            .where('title', '==', data.id)
-            .limit(1)
-            .get().then(function (querySnapshot) {
-                let article: any = {}
-                querySnapshot.forEach(function (doc) {
-                    article = doc.data();
-                });
-                if(article.title == undefined) { dispatch(failureData()) } else { return dispatch(receiveArticleById(article)) }
-                
-            }).catch(error => dispatch(failureData()))
+            .collection('articles').doc(data.id).get().then(function (doc) {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                    dispatch(receiveArticleById(doc.data()))
+                } else {
+                    console.log("No such document!");
+                    dispatch(failureData())
+                }
+            }).catch(() => dispatch(failureData()))
     }
 }

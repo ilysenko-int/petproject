@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Typography,  Container } from '@material-ui/core/';
 
@@ -13,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const Footer = withRouter(({ history }) => {
+const Footer = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -22,6 +21,6 @@ const Footer = withRouter(({ history }) => {
             </Container>
         </div>
     );
-})
+}
 
 export default Footer

@@ -16,7 +16,7 @@ export interface NewsState {
     fetching: boolean;
     data: News[];
     article: News | any,
-    not_existed_article: boolean,
+    not_existed: boolean,
 }
 
 export const FETCH_NEWS = 'FETCH_NEWS';

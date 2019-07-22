@@ -28,7 +28,7 @@ const initial: PlayersState = {
         facebook: '',
     }
   },
-  not_existed_player: false,
+  not_existed: false,
 };
 
 export default initial

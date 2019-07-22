@@ -28,7 +28,7 @@ export interface PlayersState {
     fetching: boolean;
     data: Player[];
     player: Player | any,
-    not_existed_player: boolean,
+    not_existed: boolean,
 }
 
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';

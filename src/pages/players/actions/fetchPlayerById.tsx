@@ -7,7 +7,7 @@ export function requestData(): RequestData {
     }
 };
 
-export function receivePlayerById(payload: Player[]): ReceivePlayerById {
+export function receivePlayerById(payload: Player[] | any): ReceivePlayerById {
     return {
         type: FETCH_PLAYER_SUCCESS,
         payload,
@@ -23,17 +23,12 @@ export function failureData(): FailureData {
 export function fetchPlayerById(data: any) {
     return (dispatch: { (arg0: RequestData): void; (arg0: ReceivePlayerById): void; (arg0: FailureData): void; }) => {
         dispatch(requestData());
-        fireStore
-            .collection('players')
-            .where('id', '==', +data.id)
-            .limit(1)
-            .get().then(function (querySnapshot) {
-                let player: any = {}
-                querySnapshot.forEach(function (doc) {
-                    player = doc.data();
-                });
-                console.log(player)
-                if (player.firstName == undefined) { dispatch(failureData()) } else { return dispatch(receivePlayerById(player)) }
-            }).catch(error => dispatch(failureData()))
+        fireStore.collection('players').doc(data.id).get().then(function (doc) {
+            if (doc.exists) {
+                dispatch(receivePlayerById(doc.data()))
+            } else {
+                dispatch(failureData())
+            }
+        }).catch(() => dispatch(failureData()))
     }
 }

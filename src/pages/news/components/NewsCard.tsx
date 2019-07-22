@@ -48,7 +48,7 @@ export default function NewsCard(props: ComponentProps) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Link to={`/news/${props.item.title}`} >Read more</Link>
+                <Link to={`/news/${props.item.id}`} >Read more</Link>
             </CardActions>
         </Card>
     );

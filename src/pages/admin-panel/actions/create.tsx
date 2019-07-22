@@ -22,9 +22,8 @@ export function failure(): Failure {
 
 export function create(obj: any) {
     return (dispatch: { (arg0: Send): void; (arg0: Response): void; (arg0: Failure): void; }) => {
-        console.warn(obj)
         dispatch(send());
-        fireStore.collection("players").doc("one").set(obj).then(function() {
+        fireStore.collection("players").doc().set(obj).then(function() {
             dispatch(response(obj))
         }).catch(error => dispatch(failure()));
     }

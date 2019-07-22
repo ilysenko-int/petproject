@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const ButtonAppBar = withRouter(({ history }) => {
+const Header = withRouter(({ history }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -72,4 +72,4 @@ const ButtonAppBar = withRouter(({ history }) => {
     );
 })
 
-export default ButtonAppBar
+export default Header

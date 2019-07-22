@@ -12,7 +12,8 @@ const styles = (theme: Theme) => createStyles({
     container: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+
     },
     progress: {
         position: 'absolute',
@@ -24,7 +25,8 @@ const styles = (theme: Theme) => createStyles({
         flexGrow: 1,
     },
     paper: {
-        overflow: 'hidden'
+        overflow: 'hidden',
+        width: '100%'
     },
     image: {
         maxWidth: '400px',
@@ -42,7 +44,7 @@ interface ComponentProps extends WithStyles<typeof styles> {
     fetchPlayerById: (id: any) => void;
     player: Player,
     fetching: boolean,
-    not_existed_article: boolean,
+    not_existed: boolean,
 }
 
 class PlayersDetails extends React.Component<ComponentProps & RouteComponentProps> {
@@ -65,7 +67,7 @@ class PlayersDetails extends React.Component<ComponentProps & RouteComponentProp
 
         return (
             <Container className={classes.container} >
-                <Paper className={classes.paper}>
+                {(!this.props.not_existed && !this.props.fetching) && <Paper className={classes.paper}>
                     <img className={classes.image} src={player.bio.photo} alt="" />
                     <Box className={classes.box}>
                         <Typography variant="h4">{player.firstName} {player.lastName} #{player.jersey_number}</Typography>
@@ -75,30 +77,18 @@ class PlayersDetails extends React.Component<ComponentProps & RouteComponentProp
                         {player.anthropometry ? <p>Height: {player.anthropometry.height} cm</p> : null}
                         {player.anthropometry ? <p>Weight: {player.anthropometry.weight} kg</p> : null}
                     </Box>
-                </Paper>
+                </Paper>}
+                {this.props.not_existed && <Typography variant="h4">Sorry,we don't have such player...</Typography>}
             </Container>
+
         );
     }
 }
 
-// {
-//     player: {
-//       positions: {
-//           offense: [],
-//           defense: [],
-//           special: [],
-//       },
-//       socialmedia: {
-//           instagram: '',
-//           facebook: '',
-//       }
-//     },
-//     not_existed_player: false,
-//   }
-
 const mapStateToProps = (state: AppState) => ({
     player: state.players.player,
     fetching: state.players.fetching,
+    not_existed: state.players.not_existed,
 });
 
 const mapDispatchToProps = {

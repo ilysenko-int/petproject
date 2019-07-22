@@ -15,9 +15,7 @@ import { Grid } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         card: {
-            width: '100%',
-            maxWidth: 320,
-            marginBottom: 25,
+
         },
         media: {
             height: 0,
@@ -42,7 +40,7 @@ export default function PlayerCard(props: ComponentProps) {
     positions += defense ? positions !== '' ? ',' + defense.join(',') : defense.join(',') : ''
     positions += special ? positions !== '' ? ',' + special.join(',') : special.join(',') : ''
     return (
-        <Grid item={true} xl={12} >
+        <Grid item={true} sm={4} md={3} xs={12}>
             <Card className={classes.card}>
                 <CardMedia className={classes.media} image={player.bio.photo} title={player.firstName + ' ' + player.lastName} />
                 <CardHeader title={player.firstName + ' ' + player.lastName + ' #' + player.jersey_number} subheader={positions} />

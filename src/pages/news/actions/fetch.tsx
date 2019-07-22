@@ -26,7 +26,7 @@ export function fetchNews() {
         fireStore.collection('articles').limit(10).get().then(function (querySnapshot) {
             let arr: any = [];
             querySnapshot.forEach(function (doc) {
-                arr.push(doc.data())
+                arr.push({...doc.data(), id: doc.id })
             });
             return dispatch(receiveData(arr))
         }).catch(error => dispatch(failureData()))

@@ -9,6 +9,8 @@ function reducers(
     case FETCH_PLAYERS:
       return {
         ...state,
+        player: initial.player,
+        not_existed: false,
       };
     case FETCH_PLAYERS_SUCCESS:
       return {
@@ -26,6 +28,7 @@ function reducers(
       return {
         ...state,
         fetching: false,
+        not_existed: true,
       };
     default:
       return state;

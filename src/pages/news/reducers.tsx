@@ -10,27 +10,27 @@ function reducers(
       return {
         ...state,
         fetching: true,
-        not_existed_article: false,
+        not_existed: false,
         article: initial.article
       };
     case FETCH_NEWS_SUCCESS:
       return {
         ...state,
         fetching: false,
-        not_existed_article: false,
+        not_existed: false,
         data: action.payload
       };
     case FETCH_ARTICLE_SUCCESS:
       return {
         ...state,
         fetching: false,
-        not_existed_article: false,
+        not_existed: false,
         article: action.payload
       };
     case FETCH_NEWS_FAILURE:
       return {
         ...state,
-        not_existed_article: true,
+        not_existed: true,
         fetching: false,
       };
     default:
