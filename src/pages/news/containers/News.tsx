@@ -5,21 +5,15 @@ import { AppState } from "../../../store/";
 import { NewsState } from "../types/";
 import NewsCard from '../components/NewsCard';
 import { fetchNews } from '../actions/fetch'
-import { withStyles, WithStyles, createStyles  } from '@material-ui/styles';
+import withLoading from '../../../components/loading/withLoading'
+import { withStyles, WithStyles, createStyles } from '@material-ui/styles';
 import { Theme } from '@material-ui/core';
-
-const styles = (theme: Theme) => createStyles({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-});
 
 
 interface ComponentProps extends WithStyles<typeof styles> {
   fetchNews: () => void;
   news: NewsState,
+  fetching: boolean,
 }
 
 class App extends React.Component<ComponentProps> {
@@ -41,12 +35,22 @@ class App extends React.Component<ComponentProps> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  news: state.news
+  news: state.news,
+  fetching: state.news.fetching,
 });
 
 const mapDispatchToProps = {
   fetchNews,
 };
+
+const styles = (theme: Theme) => createStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+});
+
 
 export default withStyles(styles)(connect(
   mapStateToProps,

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, Container } from '@material-ui/core/';
+import { AppBar, Toolbar, Typography, Button, Container, Breadcrumbs } from '@material-ui/core/';
+
 import logo from '../../assets/images/logo.jpg'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -51,8 +52,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+
+
 const Header = withRouter(({ history }) => {
     const classes = useStyles();
+    const linksArray = history.location.pathname.split('/')
+    const linksArrayLength = history.location.pathname.length
+
     return (
         <div className={classes.root}>
             <AppBar className={classes.appBar} position="fixed">
@@ -68,6 +74,11 @@ const Header = withRouter(({ history }) => {
                     </Toolbar>
                 </Container>
             </AppBar>
+            <Container>
+            {/* {history.location.pathname !== '/' && <Breadcrumbs aria-label="Breadcrumb" style={{marginTop: 80, marginBottom: 15}}>
+               {history.location.pathname.split('/').splice(0,3).map(item => <Link to={`/${item}`}>{item}</Link> )  }
+            </Breadcrumbs>} */}
+            </Container>
         </div>
     );
 })

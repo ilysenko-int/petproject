@@ -15,6 +15,9 @@ const styles = (theme: Theme) => createStyles({
         flexDirection: 'column',
         alignItems: 'center'
     },
+    image: {
+        width: '100%'
+    },
     progress: {
         position: 'absolute',
         top: '50%',
@@ -56,7 +59,7 @@ class NewsDetails extends React.Component<ComponentProps & RouteComponentProps> 
                     <Grid item={true} xs={12}>
                         <Paper className={classes.paper}>
                             <Typography variant="h5">{article.title}</Typography>
-                            <img src={article.cover} alt={article.title} />
+                            <img className={classes.image} src={article.cover} alt={article.title} />
                             <Typography variant="body1">{article.description}</Typography>
                             {article.images.length > 0 && article.images.map(item => <img key={item} src={item} alt={item} />)}
                         </Paper>

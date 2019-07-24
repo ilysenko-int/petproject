@@ -6,6 +6,7 @@ import Routes from '../../routes';
 
 import AppBar from '../components/header'
 import Footer from '../components/footer'
+
 import { Container } from '@material-ui/core';
 
 const App: React.FC = () => {
@@ -13,7 +14,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar />
-      <Container  style={{ padding: 0, paddingTop: 80}}>
+      <Container  style={{ padding: 85 }}>
          <Routes />
       </Container>
       <Footer />

@@ -42,7 +42,9 @@ export default function PlayerCard(props: ComponentProps) {
     return (
         <Grid item={true} sm={4} md={3} xs={12}>
             <Card className={classes.card}>
-                <CardMedia className={classes.media} image={player.bio.photo} title={player.firstName + ' ' + player.lastName} />
+                <Link to={`/players/${player.id}`} >
+                    <CardMedia className={classes.media} image={player.bio.photo} title={player.firstName + ' ' + player.lastName} />
+                </Link>
                 <CardHeader title={player.firstName + ' ' + player.lastName + ' #' + player.jersey_number} subheader={positions} />
                 <CardActions>
                     <Link to={`/players/${player.id}`} >Read more</Link>
