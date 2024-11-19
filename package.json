@@ -19,7 +19,7 @@
     "@types/react-router-redux": "^5.0.18",
     "@types/redux": "^3.6.0",
     "@types/redux-api-middleware": "^3.0.1",
-    "firebase": "^6.3.0",
+    "firebase": "^10.9.0",
     "markdown-to-jsx": "^6.10.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
